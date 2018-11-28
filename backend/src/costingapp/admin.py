@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from costingapp.models import TBLProduct
+
+admin.site.register(TBLProduct)
