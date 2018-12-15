@@ -2,3 +2,5 @@ venv
 .vscode
 *pycache*
 *.log
+node_modules
+./frontend/node_modules
