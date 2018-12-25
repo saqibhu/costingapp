@@ -1,12 +1,22 @@
 import React, { Component } from "react";
 
+import Search from "./Search";
+import SearchResults from "./SearchResults";
+import Header from "./Header";
+
+import { Provider } from "./Context";
+
 class App extends Component {
   //state = {  }
   render() {
     return (
-      <div>
-        <h1>My React App!</h1>
-      </div>
+      <Provider>
+        <div>
+          <Header />
+          <Search />
+          <SearchResults />
+        </div>
+      </Provider>
     );
   }
 }
