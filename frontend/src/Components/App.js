@@ -1,21 +1,18 @@
 import React, { Component } from "react";
 
-import Search from "./Search";
-import SearchResults from "./SearchResults";
-import Header from "./Header";
+import Search from "./Search/Search";
+import SearchResults from "./Search/SearchResults";
 
 import { Provider } from "./Context";
+
+import NavBar from "./Layouts/navBar/NavBar";
 
 class App extends Component {
   //state = {  }
   render() {
     return (
       <Provider>
-        <div>
-          <Header />
-          <Search />
-          <SearchResults />
-        </div>
+        <NavBar />
       </Provider>
     );
   }
