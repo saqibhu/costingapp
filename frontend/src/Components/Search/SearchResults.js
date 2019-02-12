@@ -2,11 +2,17 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import { Consumer } from "../Context";
-
+import PropTypes from "prop-types";
 import SearchResultsItem from "./SearchResultItem";
 
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+
 class SearchResults extends Component {
-  state = {
+  /*state = {
     results: []
   };
 
@@ -15,16 +21,50 @@ class SearchResults extends Component {
       this.setState({
         results: res.data
       });
-      //console.log(res.data);
+
+      if (this.props.search !== undefined) {
+        console.log(this.props.value);
+      }
     });
-  }
+  }*/
 
   render() {
-    const resultItems = this.state.results.map(result => (
-      <SearchResultsItem key={result.productid} value={result} />
-    ));
+    //console.log(this.props);
+    let resultContent;
 
-    return <ul>{resultItems}</ul>;
+    //destructure
+    const { results } = this.props;
+
+    if (results) {
+      resultContent = (
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>ISBN</TableCell>
+              <TableCell align="right">Full Title</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {results.map(result => (
+              <TableRow key={result.productid}>
+                <TableCell component="th" scope="row">
+                  {result.isbn13}
+                </TableCell>
+                <TableCell align="right">{result.fulltitle}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      );
+    } else {
+      resultContent = null;
+    }
+
+    //const resultItems = this.props.results.map(result => (
+    //<SearchResultsItem key={result.productid} value={result} />
+    //));
+
+    return <div>{resultContent}</div>;
   }
 
   /*using context api*/
@@ -38,5 +78,9 @@ class SearchResults extends Component {
     );
   }*/
 }
+
+//SearchResults.propTypes = {
+//results: PropTypes.array.isRequired
+//};
 
 export default SearchResults;

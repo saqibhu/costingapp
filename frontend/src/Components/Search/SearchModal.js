@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 
 import SearchResults from "./SearchResults";
+import SearchInput from "./SearchInput";
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -56,6 +56,7 @@ class SearchModal extends Component {
         </Button>
         <Modal open={this.state.open} onClose={this.handleClose}>
           <div style={getModalStyle()} className={classes.paper}>
+            <SearchInput />
             <SearchResults />
           </div>
         </Modal>

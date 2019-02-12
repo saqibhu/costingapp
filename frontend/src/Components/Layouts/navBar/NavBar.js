@@ -24,10 +24,6 @@ const styles = {
 };
 
 class NavBar extends Component {
-  test = () => {
-    console.log("hit test");
-  };
-
   render() {
     const { classes } = this.props;
     return (
