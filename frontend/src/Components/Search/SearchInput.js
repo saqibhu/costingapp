@@ -23,14 +23,6 @@ class SearchInput extends Component {
     });
   };
 
-  /*handleSubmit(event) {
-    //alert("A search was submitted: " + this.state.value);
-    //console.log("in handle submit " + this.state.search);
-    event.preventDefault();
-
-    <SearchResults value={this.state.search} />;
-  }*/
-
   render() {
     //console.log(this.state.results);
     return (

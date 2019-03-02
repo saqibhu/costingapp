@@ -1,35 +1,23 @@
 import React, { Component } from "react";
-import axios from "axios";
 
-import { Consumer } from "../Context";
-import PropTypes from "prop-types";
-import SearchResultsItem from "./SearchResultItem";
-
+//Material UI Imports
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
+//Redux Imports
+import { connect } from "react-redux";
+import { updateSelectedProductId } from "../../actions";
+
 class SearchResults extends Component {
-  /*state = {
-    results: []
+  handleClick = (event, id) => {
+    this.props.dispatch(updateSelectedProductId(id));
   };
 
-  componentDidMount() {
-    axios.get("http://localhost:8000/api/tblproduct/").then(res => {
-      this.setState({
-        results: res.data
-      });
-
-      if (this.props.search !== undefined) {
-        console.log(this.props.value);
-      }
-    });
-  }*/
-
   render() {
-    //console.log(this.props);
+    //console.log(this.state.selectedProduct);
     let resultContent;
 
     //destructure
@@ -46,7 +34,10 @@ class SearchResults extends Component {
           </TableHead>
           <TableBody>
             {results.map(result => (
-              <TableRow key={result.productid}>
+              <TableRow
+                onClick={event => this.handleClick(event, result.productid)}
+                key={result.productid}
+              >
                 <TableCell component="th" scope="row">
                   {result.isbn13}
                 </TableCell>
@@ -60,27 +51,17 @@ class SearchResults extends Component {
       resultContent = null;
     }
 
-    //const resultItems = this.props.results.map(result => (
-    //<SearchResultsItem key={result.productid} value={result} />
-    //));
-
     return <div>{resultContent}</div>;
   }
-
-  /*using context api*/
-  /*render() {
-    return (
-      <Consumer>
-        {value => {
-          return <h3>{value.searchText}</h3>;
-        }}
-      </Consumer>
-    );
-  }*/
 }
 
 //SearchResults.propTypes = {
-//results: PropTypes.array.isRequired
+// results: PropTypes.array.isRequired
 //};
+const mapStateToProps = state => {
+  return {
+    selectedProductId: state.selectedProduct
+  };
+};
 
-export default SearchResults;
+export default connect(mapStateToProps)(SearchResults);

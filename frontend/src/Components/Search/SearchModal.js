@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 
 import SearchResults from "./SearchResults";
 import SearchInput from "./SearchInput";
+
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -65,11 +66,10 @@ class SearchModal extends Component {
   }
 }
 
-SearchModal.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+//SearchModal.propTypes = {
+// classes: PropTypes.object.isRequired
+//};
 
-// We need an intermediary variable for handling the recursive nesting.
 const SearchModalWrapped = withStyles(styles)(SearchModal);
 
 export default SearchModalWrapped;
