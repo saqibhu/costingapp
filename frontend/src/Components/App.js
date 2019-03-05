@@ -1,40 +1,27 @@
 import React, { Component } from "react";
 
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-
 import NavBar from "./Layouts/navBar/NavBar";
 import Details from "./tblproduct/Details";
+import Dashboard from "./Dashboard";
 
-//reducer
-const initialState = {
-  selectedProductId: ""
-};
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "UPDATE_SELECTEDPRODUCTID":
-      return {
-        selectedProductId: action.productid
-      };
-    default:
-      return state;
-  }
-};
-//end reducer
-
-const store = createStore(reducer);
+import { connect } from "react-redux";
 
 class App extends Component {
-  //state = {  }
   render() {
     return (
-      <Provider store={store}>
+      <React.Fragment>
         <NavBar />
-        <Details />
-      </Provider>
+        {/*If there's a product id in redux load the details component otherwise dashboard*/}
+        {this.props.selectedProductId != "" ? <Details /> : <Dashboard />}
+      </React.Fragment>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    selectedProductId: state.selectedProductId
+  };
+};
+
+export default connect(mapStateToProps)(App);

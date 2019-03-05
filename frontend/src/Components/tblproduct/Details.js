@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 
 class Details extends Component {
   render() {
+    //console.log(this.props);
     return <h3>{this.props.selectedProductId}</h3>;
+    //return <h3>test</h3>;
   }
 }
 

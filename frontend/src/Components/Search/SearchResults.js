@@ -9,7 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 
 //Redux Imports
 import { connect } from "react-redux";
-import { updateSelectedProductId } from "../../actions";
+import { updateSelectedProductId } from "../../Actions/actions";
 
 class SearchResults extends Component {
   handleClick = (event, id) => {
@@ -58,10 +58,8 @@ class SearchResults extends Component {
 //SearchResults.propTypes = {
 // results: PropTypes.array.isRequired
 //};
-const mapStateToProps = state => {
-  return {
-    selectedProductId: state.selectedProduct
-  };
-};
+const mapStateToProps = state => ({
+  selectedProductId: state.selectedProductId
+});
 
 export default connect(mapStateToProps)(SearchResults);
