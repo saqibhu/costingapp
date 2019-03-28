@@ -1,4 +1,4 @@
-import { UPDATE_SELECTEDPRODUCTID } from "../Actions/actions";
+import { UPDATE_SELECTEDPRODUCTID } from "../Actions/selectedProductId";
 
 export default function selectedProductIdReducer(
   state = "",
@@ -6,16 +6,7 @@ export default function selectedProductIdReducer(
 ) {
   switch (type) {
     case UPDATE_SELECTEDPRODUCTID:
-      //return {
-      //selectedProductId: action.productid
-      //console.log(action.payload);
-
-      //returning the whole payload here was causing
-      //selectedProductId to return as an object instead of a string
       return payload.selectedProductId;
-    //return Object.assign({}, state, {
-    //selectedProductId: payload.selectedProductId
-    //});
     default:
       return state;
   }

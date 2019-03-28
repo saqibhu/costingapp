@@ -1,6 +1,6 @@
 export const UPDATE_SELECTEDPRODUCTID = "updateSelectedProductId";
 
-//action method
+//action creator
 export function updateSelectedProductId(productid) {
   return {
     type: UPDATE_SELECTEDPRODUCTID,

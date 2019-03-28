@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import propTypes from "prop-types";
 
 class SearchResultItem extends Component {
-  //state = {  }
   render() {
     const { fulltitle, firstimpproductid } = this.props.value;
 

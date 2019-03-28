@@ -5,18 +5,19 @@ import selectedProductIdReducer from "./Reducers/selectProductIdReducer";
 import tblProductReducer from "./Reducers/tblProductReducer";
 import tblPOrderReducer from "./Reducers/tblPOReducer";
 
-const initialState = {
+/* const initialState = {
   selectedProductId: "",
   tblProduct: [],
   tblPOrder: []
-};
+}; */
+
+const initialState = {};
 
 const allReducers = combineReducers({
   selectedProductId: selectedProductIdReducer,
   tblProduct: tblProductReducer,
   tblPOrder: tblPOrderReducer
 });
-
 const middleware = [thunk];
 
 const store = createStore(

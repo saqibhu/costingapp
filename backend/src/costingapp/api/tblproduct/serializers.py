@@ -6,5 +6,6 @@ from costingapp.models import TBLProduct
 class TBLProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = TBLProduct
-        fields = ('productid', 'firstimpproductid',
-                  'fulltitle', 'isbn13', 'createddate')
+        # fields = ('productid', 'firstimpproductid',
+        #         'fulltitle', 'isbn13', 'createddate')
+        fields = '__all__'
