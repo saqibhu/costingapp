@@ -1,11 +1,8 @@
 import React from "react";
+import Typography from "@material-ui/core/Typography";
 
 const Main = () => {
-  return (
-    <div>
-      <p>Dashboard page</p>
-    </div>
-  );
+  return <Typography variant="h4">Dashboard</Typography>;
 };
 
 export default Main;

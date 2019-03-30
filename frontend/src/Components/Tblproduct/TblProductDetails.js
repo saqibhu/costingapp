@@ -1,12 +1,16 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { getTblProductDetail } from "../../Actions/tblProduct/index";
+import {
+  getTblProductDetail,
+  updateTblProductDetail
+} from "../../Actions/tblProduct/index";
+
+import PropTypes from "prop-types";
+
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 class TblProductDetails extends Component {
-  /*Put some proptypes in here*/
-
   componentDidMount() {
     this.props.getTblProductDetail(this.props.match.params.selectedProductId);
   }
@@ -25,17 +29,18 @@ class TblProductDetails extends Component {
 
     if (this.props.tblProduct.payload) {
       details = (
-        <Fragment>
+        <form onSubmit={this.handleSubmit}>
           <TextField
+            name="fulltitle"
             label="Fulltitle"
             value={this.props.tblProduct.payload.fulltitle}
           />
           <br />
           <br />
-          <Button variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary">
             Update
           </Button>
-        </Fragment>
+        </form>
       );
     } else {
       details = null;
@@ -44,6 +49,11 @@ class TblProductDetails extends Component {
     return <Fragment>{details}</Fragment>;
   }
 }
+
+TblProductDetails.propTypes = {
+  getTblProductDetail: PropTypes.func.isRequired,
+  updateTblProductDetail: PropTypes.func.isRequired
+};
 
 //Pass in here what you want to pull from redux
 const mapStateToProps = state => {
@@ -54,5 +64,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getTblProductDetail }
+  { getTblProductDetail, updateTblProductDetail }
 )(TblProductDetails);

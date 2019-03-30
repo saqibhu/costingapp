@@ -1,7 +1,8 @@
 import React from "react";
+import Typography from "@material-ui/core/Typography";
 
 const About = () => {
-  return <h3>About page</h3>;
+  return <Typography variant="h4">About page</Typography>;
 };
 
 export default About;
