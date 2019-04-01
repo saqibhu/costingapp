@@ -24,6 +24,19 @@ class TblProductDetails extends Component {
     }
   }
 
+  onBlur = e => {
+    let name = e.target.name;
+    let value = e.target.value;
+    const tblProduct = {
+      productid: this.props.match.params.selectedProductId,
+      [name]: value
+    };
+    this.props.updateTblProductDetail(
+      this.props.match.params.selectedProductId,
+      tblProduct
+    );
+  };
+
   render() {
     let details;
 
@@ -33,7 +46,16 @@ class TblProductDetails extends Component {
           <TextField
             name="fulltitle"
             label="Fulltitle"
-            value={this.props.tblProduct.payload.fulltitle}
+            defaultValue={this.props.tblProduct.payload.fulltitle}
+            onBlur={this.onChange}
+          />
+          <br />
+          <br />
+          <TextField
+            name="isbn13"
+            label="ISBN 13"
+            defaultValue={this.props.tblProduct.payload.isbn13}
+            onBlur={this.onBlur}
           />
           <br />
           <br />

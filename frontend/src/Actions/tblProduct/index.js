@@ -1,4 +1,9 @@
-import { GET_TBLPRODUCT, UPDATE_TBLPRODUCT, ADD_TBLPRODUCT } from "./types";
+import {
+  GET_TBLPRODUCT,
+  UPDATE_TBLPRODUCT,
+  ADD_TBLPRODUCT,
+  UPDATE_TBLPRODUCTFORM
+} from "./types";
 import axios from "axios";
 
 const PATH_BASE = "http://localhost:8000/api";
@@ -13,6 +18,7 @@ export const getTblProductDetail = productid => dispatch => {
     .then(response => {
       dispatch({
         type: GET_TBLPRODUCT,
+        //payload: response.data
         payload: response.data
       });
     })
@@ -21,9 +27,9 @@ export const getTblProductDetail = productid => dispatch => {
     });
 };
 
-export const updateTblProductDetail = productid => dispatch => {
+export const updateTblProductDetail = (productid, tblproduct) => dispatch => {
   axios
-    .put(`${APIURL}${productid}`)
+    .put(`${APIURL}${productid}/`, tblproduct)
     .then(response => {
       dispatch({
         type: UPDATE_TBLPRODUCT,
@@ -33,6 +39,15 @@ export const updateTblProductDetail = productid => dispatch => {
     .catch(error => {
       throw error;
     });
+};
+
+export const updateTblProductDetailForm = (name, value) => {
+  return {
+    type: UPDATE_TBLPRODUCTFORM,
+    payload: {
+      [name]: value
+    }
+  };
 };
 
 export const addTblProductDetail = tblproduct => dispatch => {

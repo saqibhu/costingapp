@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 
 class SearchResults extends Component {
   handleClick = (event, id) => {
+    //console.log(this.props);
     this.props.dispatch(updateSelectedProductId(id));
   };
 
