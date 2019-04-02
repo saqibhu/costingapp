@@ -8,7 +8,6 @@ import {
 import PropTypes from "prop-types";
 
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 
 class TblProductDetails extends Component {
   componentDidMount() {
@@ -24,7 +23,7 @@ class TblProductDetails extends Component {
     }
   }
 
-  onBlur = e => {
+  onChange = e => {
     let name = e.target.name;
     let value = e.target.value;
     const tblProduct = {
@@ -40,29 +39,33 @@ class TblProductDetails extends Component {
   render() {
     let details;
 
+    //console.log(this.props);
+
     if (this.props.tblProduct.payload) {
       details = (
-        <form onSubmit={this.handleSubmit}>
+        <React.Fragment>
           <TextField
             name="fulltitle"
             label="Fulltitle"
-            defaultValue={this.props.tblProduct.payload.fulltitle}
-            onBlur={this.onChange}
+            value={this.props.tblProduct.payload.fulltitle}
+            onChange={this.onChange} //consider onBlur
           />
           <br />
           <br />
           <TextField
             name="isbn13"
             label="ISBN 13"
-            defaultValue={this.props.tblProduct.payload.isbn13}
-            onBlur={this.onBlur}
+            value={this.props.tblProduct.payload.isbn13}
+            onChange={this.onChange}
           />
           <br />
           <br />
-          <Button type="submit" variant="contained" color="primary">
-            Update
-          </Button>
-        </form>
+          <input
+            name="input"
+            value={this.props.tblProduct.payload.fulltitle}
+            onChange={this.onChange}
+          />
+        </React.Fragment>
       );
     } else {
       details = null;
