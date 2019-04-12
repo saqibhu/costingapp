@@ -8,10 +8,7 @@ import {
 export default function tblProductReducer(state = [], { type, payload }) {
   switch (type) {
     case GET_TBLPRODUCT:
-      return {
-        ...state,
-        payload
-      };
+      return { ...state, payload };
     case ADD_TBLPRODUCT:
       return {
         ...state,

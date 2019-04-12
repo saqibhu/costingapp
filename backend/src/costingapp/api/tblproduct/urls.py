@@ -1,17 +1,23 @@
-# from django.urls import path
+# from rest_framework import routers
+# from .views import TblProductViewSet
 
-# from .views import TBLProductListView, TBLProductDetailView, TBLProductCreateView
+# router = routers.DefaultRouter()
+# router.register('', TBLProductViewSet, 'tblproduct')
 
-# urlpatterns = [
-#     path('', TBLProductListView.as_view()),
-#     path('create/', TBLProductCreateView.as_view()),
-#     path('<int:productid>', TBLProductDetailView.as_view())
-# ]
+# urlpatterns = router.urls
 
-from rest_framework import routers
-from .views import TBLProductViewSet
+from django.conf.urls import url
+from . import views
 
-router = routers.DefaultRouter()
-router.register('', TBLProductViewSet, 'tblproduct')
-
-urlpatterns = router.urls
+urlpatterns = [
+    url(
+        r'^(?P<productid>[0-9]+)$',
+        views.get_delete_update_tblproduct,
+        name='get_delete_update_tblproduct'
+    ),
+    url(
+        r'^$',
+        views.get_post_tblproduct,
+        name='get_post_tblproduct'
+    )
+]

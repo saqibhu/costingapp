@@ -1,11 +1,10 @@
 from rest_framework import serializers
+from costingapp.models import TblProduct
 
-from costingapp.models import TBLProduct
 
-
-class TBLProductSerializer(serializers.ModelSerializer):
+class TblProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TBLProduct
+        model = TblProduct
         # fields = ('productid', 'firstimpproductid',
         #         'fulltitle', 'isbn13', 'createddate')
         fields = '__all__'

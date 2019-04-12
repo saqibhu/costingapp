@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from costingapp.models import TBLProduct
+from costingapp.models import TblProduct
 
-admin.site.register(TBLProduct)
+admin.site.register(TblProduct)

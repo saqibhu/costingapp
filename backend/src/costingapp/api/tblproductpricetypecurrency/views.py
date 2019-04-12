@@ -2,57 +2,56 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
-from costingapp.models import TblProduct
-from .serializers import TblProductSerializer
+from costingapp.models import TblProductPriceTypeCurrency
+from .serializers import TblProductPriceTypeCurrencySerializer
 
 
 @api_view(['GET', 'DELETE', 'PUT'])
-def get_delete_update_tblproduct(request, productid):
+def get_delete_update_tblproductpricetypecurrency(request, productid):
     try:
-        tblproduct = TblProduct.objects.get(
+        tblproductpricetypecurrency = TblProductPriceTypeCurrency.objects.get(
             productid=productid)
-    except TblProduct.DoesNotExist:
+    except TblProductPriceTypeCurrency.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     # get details of a single TblProductPriceTypeCurrency
     if request.method == 'GET':
-        serializer = TblProductSerializer(
-            tblproduct)
+        serializer = TblProductPriceTypeCurrencySerializer(
+            tblproductpricetypecurrency)
         return Response(serializer.data)
     # delete a single TblProductPriceTypeCurrency
     elif request.method == 'DELETE':
-        tblproduct.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({})
     # update details of a single TblProductPriceTypeCurrency
     elif request.method == 'PUT':
-        serializer = TblProductSerializer(tblproduct, data=request.data)
+        serializer = TblProductPriceTypeCurrencySerializerr(
+            tblproductpricetypecurrency, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            TblProduct.objects.setModifiedDate(productid)
-            # TblProduct.objects.setModifiedDate()
-            # serializer.setModifiedDate()
             return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'POST'])
-def get_post_tblproduct(request):
+def get_post_tblproductpricetypecurrency(request):
     # get all TblProductPriceTypeCurrencys
     if request.method == 'GET':
-        tblproduct = TblProduct.objects.all()
-        serializer = TblProductSerializer(
-            tblproduct, many=True)
+        tblproductpricetypecurrency = TblProductPriceTypeCurrency.objects.all()
+        serializer = TblProductPriceTypeCurrencySerializer(
+            tblproductpricetypecurrency, many=True)
         return Response(serializer.data)
     # insert a new record for a TblProductPriceTypeCurrency
     elif request.method == 'POST':
         data = {
+            'productpricetypecurrencyid': request.data.get('productpricetypecurrencyid'),
             'productid': request.data.get('productid'),
-            'firstimpproductid': request.data.get('firstimpproductid'),
-            'fulltitle': request.data.get('fulltitle'),
-            'isbn13': request.data.get('isbn13')
+            'pricetypeid': request.data.get('pricetypeid'),
+            'currenyid': request.data.get('currenyid'),
+            'pricevalue': request.data.get('pricevalue'),
+            # 'createddate': request.data.get('createddate')
         }
 
-        serializer = TblProductSerializer(data=data)
+        serializer = TblProductPriceTypeCurrencySerializer(data=data)
 
         if serializer.is_valid():
             serializer.save()

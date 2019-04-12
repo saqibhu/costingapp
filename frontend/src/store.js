@@ -11,7 +11,7 @@ import tblPOrderReducer from "./Reducers/tblPOReducer";
   tblPOrder: []
 }; */
 
-const initialState = {};
+//const initialState = {};
 
 const allReducers = combineReducers({
   selectedProductId: selectedProductIdReducer,
@@ -22,7 +22,7 @@ const middleware = [thunk];
 
 const store = createStore(
   allReducers,
-  initialState,
+  //initialState,
   compose(
     applyMiddleware(...middleware),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

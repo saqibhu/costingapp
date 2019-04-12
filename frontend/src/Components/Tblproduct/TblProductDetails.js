@@ -60,11 +60,6 @@ class TblProductDetails extends Component {
           />
           <br />
           <br />
-          <input
-            name="input"
-            value={this.props.tblProduct.payload.fulltitle}
-            onChange={this.onChange}
-          />
         </React.Fragment>
       );
     } else {
