@@ -11,7 +11,7 @@ from . import views
 
 urlpatterns = [
     url(
-        r'^(?P<productid>[0-9]+)$',
+        r'^(?P<productid>[0-9]+)',
         views.get_delete_update_tblproduct,
         name='get_delete_update_tblproduct'
     ),

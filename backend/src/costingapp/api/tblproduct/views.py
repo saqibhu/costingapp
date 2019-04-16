@@ -29,8 +29,6 @@ def get_delete_update_tblproduct(request, productid):
         if serializer.is_valid():
             serializer.save()
             TblProduct.objects.setModifiedDate(productid)
-            # TblProduct.objects.setModifiedDate()
-            # serializer.setModifiedDate()
             return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

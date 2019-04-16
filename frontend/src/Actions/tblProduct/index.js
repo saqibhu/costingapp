@@ -13,6 +13,7 @@ const APIURL = `${PATH_BASE}${PATH_TBLPRODUCT}`;
 
 //action creator
 export const getTblProductDetail = productid => dispatch => {
+  console.log(`${APIURL}${productid}`);
   axios
     .get(`${APIURL}${productid}`)
     .then(response => {
@@ -29,7 +30,7 @@ export const getTblProductDetail = productid => dispatch => {
 
 export const updateTblProductDetail = (productid, tblproduct) => dispatch => {
   axios
-    .put(`${APIURL}${productid}/`, tblproduct)
+    .put(`${APIURL}${productid}`, tblproduct)
     .then(response => {
       dispatch({
         type: UPDATE_TBLPRODUCT,
